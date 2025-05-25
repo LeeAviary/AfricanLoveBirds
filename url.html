@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Birds for Sale</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+      height: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    body {
+      flex: 1 0 auto;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Header with logo/name only */
+    /* Header */
+/* Header: scrolls normally */
+/* Header */
+/* Header */
+header {
+  background-color: rgba(44, 62, 80, 0.8); /* translucent dark blue */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  padding: 20px 40px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+  height: 64px;
+  text-align: center;
+}
+
+
+
+/* Navbar */
+nav {
+  background-color: rgba(52, 73, 94, 0.75); /* translucent */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px 20px;
+  position: fixed;
+  top: 64px; /* Directly below header */
+  left: 0;
+  width: 100%;
+  z-index: 1090;
+  font-size: 1.1rem;
+  transition: transform 0.3s;
+}
+
+
+
+nav.hide {
+  transform: translateY(-100%);
+}
+
+
+
+    nav a {
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover{
+      background-color: #27ae60;
+      color: white;
+    }
+
+    /* Home Section */
+    #home {
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-image: url(LA.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+}
+
+
+    /* Container for other sections */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    /* Birds Grid - fixed to 2 columns */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+    }
+    .card-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      color: #34495e;
+    }
+    .price {
+      color: #27ae60;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      background-color: #2980b9;
+      color: white;
+      border-radius: 5px;
+      font-size: 1rem;
+      text-align: center;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    .btn:hover {
+      background-color: #1c5980;
+    }
+
+    /* Sections styling */
+    section {
+      padding: 60px 0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: auto;
+      user-select: none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        gap: 15px;
+        font-size: 1rem;
+        flex-wrap: wrap;
+      }
+      header {
+        font-size: 1.5rem;
+        padding: 15px 20px;
+        height: 50px;
+      }
+      nav {
+        top: 50px;
+      }
+      .card img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    LEE AVIARY
+  </header>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#birds">Birds</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+
+  </section>
+
+  <!-- Birds Section -->
+  <section id="birds" class="container">
+    <h2>Birds for Sale</h2>
+    <div class="grid">
+
+      <div class="card">
+        <img src="Yellow collarred masked love bird.jpeg" alt="Green Parrot" />
+        <div class="card-content">
+          <h3>Yellow Collarred Masked Lovebird</h3>
+          <div class="price">$120</div>
+          <div class="description">Beautiful, healthy, and playful Yellow-collared Masked Lovebird with vibrant colors—perfect as a friendly companion pet.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="lutino.jpeg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Lutino fisher opaline Lovebird</h3>
+          <div class="price">$85</div>
+          <div class="description">Bright and eye-catching Lutino Fischer Opaline Lovebird with striking yellow and orange plumage—healthy, active, and perfect as a loving companion.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="th.jpg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Blue Masked Lovebird</h3>
+          <div class="price">$85</div>
+          <div class="description">Striking Blue Masked Lovebird with a deep blue body and distinctive black face—healthy, active, and a charming companion bird.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Blue fisher opaline.jpeg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Blue Fisher Opaline Lovebird</h3>
+          <div class="price">$85</div>
+          <div class="description">Beautiful Blue Fischer Opaline Lovebird with soft blue and white feathers—healthy, gentle, and perfect for a loving companion.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="AF.jpg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Albino Fisher Lovebird</h3>
+          <div class="price">$85</div>
+          <div class="description">Charming and vibrant Blue Masked Lovebird with a striking black face and soft blue feathers—healthy, playful, and ideal for a loving home.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Red-Headed-Lovebird.jpg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Red-Headed Lovebirds</h3>
+          <div class="price">$85</div>
+          <div class="description">Stunning Red-Headed Lovebird with a vivid red head and green body—healthy, energetic, and a wonderful choice for a cheerful companion pet.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="grey headed.jpg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Grey-headed Lovebird</h3>
+          <div class="price">$85</div>
+          <div class="description">Elegant Grey-headed Lovebird with a soft grey head and bluish-green body—healthy, calm, and a lovely companion pet.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Dutch Blue Lovebird.jpg" alt="Lovebird" />
+        <div class="card-content">
+          <h3>Peach Faced Lovebird</h3>
+          <div class="price">$85</div>
+          <div class="description">Beautiful Blue and White Peach-Faced Lovebird with a soft pastel face and bright feathers—healthy, playful, and perfect for a friendly companion.</div>
+          <a href="https://wa.me/9400205988" class="btn" target="_blank">Contact Seller</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- Contact Section -->
+  <section id="about" class="container" style="text-align: center;">
+  <h2>About Us</h2>
+  <p style="max-width: 800px; margin: auto; font-size: 1.1rem; color: #444; line-height: 1.7;">
+    At <strong>Lee Aviary</strong>, we believe that birds are more than pets — they are companions, family, and a source of daily joy. Nestled in a serene environment where our feathered friends thrive, we specialize in raising healthy, vibrant lovebirds with care, compassion, and commitment.
+    <br><br>
+    With years of experience and a deep understanding of avian behavior, we nurture each bird from hatchling to happy companion. Our aviary isn't just a place where birds are sold — it's a sanctuary where they are loved, socialized, and prepared to become a cherished part of your home.
+    <br><br>
+    Whether you're a first-time bird owner or a seasoned enthusiast, we’re here to guide you every step of the way — from choosing the right lovebird to ongoing care advice. Every bird from Lee Aviary carries a promise: health, happiness, and a lifetime of chirping cheer.
+    <br><br>
+    Join the Lee Aviary family and experience the magic of life with birds — one song, one feather, one friendship at a time.
+  </p>
+</section>
+<section id="contact" class="container" style="text-align: center;">
+  <h2>Contact Us</h2>
+  <p style="max-width: 700px; margin: auto; font-size: 1.1rem; color: #444; line-height: 1.6;">
+    <br>
+    📧 Email us at <a href="mailto:leeaviarycontact@gmail.com">leeaviarycontact@gmail.com</a><br>
+    📱 WhatsApp: <a href="https://wa.me/15551234567?text=I'm%20interested%20in%20buying%20a%20lovebird%20from%20Lee%20Aviary" target="_blank" style="color: #27ae60; font-weight: bold;">9400205988</a>
+    <br>
+    📍 Visit us at: <em>Kochi,Kerala</em><br>
+    Instagram: <a href="https://instagram.com/leeaviary" target="_blank">@leeaviary</a><br>
+    Facebook: <a href="https://www.facebook.com/lee.aviary.2025" target="_blank">facebook.com/leeaviary</a>
+    <br><br>
+    You can also follow us on social media to see our latest arrivals and behind-the-scenes peeks into aviary life.
+  </p>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Lee Aviary. All rights reserved.</p>
+  </footer>
+
+ <script>
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
+  const nav = document.getElementById("navbar");
+
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = lastScrollY - currentScrollY;
+
+    // Navbar hide/show on scroll direction
+    if (scrollDelta > 10) {
+      nav.classList.remove("hide"); // scrolling up
+    } else if (scrollDelta < -10) {
+      nav.classList.add("hide"); // scrolling down
+    }
+    lastScrollY = currentScrollY;
+
+    // Active link highlight
+    
+    
+
+    
+  });
+</script>
+
+
+
+
+</body>
+</html>
