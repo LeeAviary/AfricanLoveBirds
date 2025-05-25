@@ -100,15 +100,16 @@ nav.hide {
   padding: 0 20px;
   box-sizing: border-box;
   background-image: url(LA.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-size: cover;       /* Change from cover to contain */
+    background-position: center; /* Align image to top center */
+    background-repeat: no-repeat;
+  background-color: #000; /* Fallback if image doesn't load */
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
@@ -231,9 +232,23 @@ nav.hide {
         top: 50px;
       }
       .card img {
-        height: 200px;
+        height: 350px;
       }
     }
+    @media (max-width: 768px) {
+  #home {
+    font-size: 2rem;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #home {
+    font-size: 1.5rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+}
   </style>
 </head>
 <body>
